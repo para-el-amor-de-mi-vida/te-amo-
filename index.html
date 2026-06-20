@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Libro — Mis gustos</title>
+<style>
+  :root{
+    --bg:#efe7dd;
+    --book:#fffefc;
+    --shadow: rgba(0,0,0,0.15);
+    --accent:#d46a6a;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg,#f6efe8 0%, #efe7dd 100%);
+  }
+  .book-wrap{
+    width:900px;
+    max-width:95%;
+    height:600px;
+    perspective:2000px;
+  }
+  .book{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+  }
+  .page{
+    position:absolute;
+    width:50%;
+    height:100%;
+    top:0;
+    overflow:hidden;
+    background:var(--book);
+    box-shadow: 0 10px 30px var(--shadow);
+    border-radius:6px;
+    display:flex;
+    flex-direction:column;
+  }
+  /* left and right pages */
+  .page.left{ left:0; border-right:1px solid #e6dfd8; padding:40px 30px 40px 50px; }
+  .page.right{ right:0; left:50%; padding:40px 50px 40px 30px; }
+
+  .spine{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:6px;
+    height:100%;
+    background:linear-gradient(180deg,#d6c9bf,#cbbfb5);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.08);
+  }
+
+  header.title{
+    font-size:22px;
+    color:#6b4f4f;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+  }
+  .subtitle{
+    font-size:13px;
+    color:#8a7a7a;
+    margin-bottom:18px;
+  }
+
+  .content{
+    flex:1;
+    overflow:auto;
+    color:#222;
+    line-height:1.5;
+  }
+
+  .controls{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+  }
+  .btn{
+    background:var(--accent);
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+  }
+
+  /* small decorative corners */
+  .corner{
+    position:absolute;
+    width:70px;height:70px;border-radius:8px;
+    background:linear-gradient(135deg,#fff,#f3efe9);
+    box-shadow:0 6px 14px rgba(0,0,0,0.06);
+  }
+  .corner.tl{ top:12px; left:12px; transform:rotate(-6deg); }
+  .corner.br{ bottom:12px; right:12px; transform:rotate(6deg); }
+
+  /* page indicators */
+  .page-index{
+    font-size:13px;
+    color:#7a6767;
+    margin-top:8px;
+  }
+
+  /* responsive */
+  @media (max-width:700px){
+    .book-wrap{ height:520px; }
+    .page{ padding:28px; }
+    header.title{ font-size:18px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="book-wrap">
+  <div class="book" id="book">
+
+    <div class="page left" data-page="1">
+      <div class="corner tl"></div>
+      <header class="title">Voleibol</header>
+      <div class="subtitle">Mi pasión por el deporte</div>
+      <div class="content">
+        <p>El voleibol es un deporte de equipo dinámico donde la comunicación, la precisión y la energía son clave. Me gusta jugar en la cancha, entrenar saques y remates, y disfrutar de la sensación de equipo.</p>
+        <p>Posiciones favoritas: receptora, colocadora. Momentos preferidos: los partidos ajustados y las celebraciones con el equipo.</p>
+        <div class="page-index">Página 1</div>
+      </div>
+    </div>
+
+    <div class="page right" data-page="2">
+      <div class="corner br"></div>
+      <header class="title">Me gusta...</header>
+      <div class="subtitle">Una lista de cosas que me importan</div>
+      <div class="content">
+        <h3>Musica</h3>
+        <ul>
+          <li>The Weeknd</li>
+          <li>Chase Atlantic</li>
+          <li>The Neighbourhood</li>
+        </ul>
+        <h3>Motorsport</h3>
+        <ul>
+          <li>La F1</li>
+          <li>Charles Leclerc</li>
+          <li>Max Verstappen</li>
+          <li>Lewis Hamilton</li>
+          <li>El italiano (estilo/estética)</li>
+        </ul>
+        <h3>Países</h3>
+        <ul>
+          <li>Italia</li>
+          <li>Argentina</li>
+        </ul>
+        <div class="page-index">Página 2</div>
+      </div>
+    </div>
+
+    <!-- página adicional: animalitos, tú, gatos, dibujar, leer, Wattpad, Dark romance -->
+    <div class="page left" style="left:100%; transform:translateX(-100%);" data-page="3">
+      <header class="title">Otras cosas que me gustan</header>
+      <div class="subtitle">Pequeñas pasiones y hobbies</div>
+      <div class="content">
+        <h3>Animales y mascotas</h3>
+        <p>Los animalitos, especialmente los gatos —su independencia y ternura—.</p>
+        <h3>Creatividad</h3>
+        <p>Dibujar, leer y escribir en Wattpad. Me encanta el género Dark romance.</p>
+        <h3>Personas</h3>
+        <p>Tú (puedes personalizar este espacio con dedicatorias o fotos).</p>
+        <div class="page-index">Página 3</div>
+      </div>
+    </div>
+
+    <div class="spine"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="prev">Anterior</button>
+    <button class="btn" id="next">Siguiente</button>
+  </div>
+</div>
+
+<script>
+  const pages = Array.from(document.querySelectorAll('.page'));
+  let idx = 0; // current open spread index (0 => pages 1-2 visible)
+  function showIndex(i){
+    // positions: spread 0 = left page at index 0, right page index 1
+    // we'll place pages horizontally by setting left property
+    const width = 100; // percentage step
+    pages.forEach((p, n)=>{
+      const spread = Math.floor(n/2);
+      const leftPos = (n%2===0) ? (spread*100) : (spread*100 + 50);
+      // compute transform offset relative to idx
+      const offset = (spread - i) * 100;
+      if(n%2===0){
+        p.style.left = (offset) + '%';
+        p.style.transform = 'translateX(0)';
+      } else {
+        p.style.left = (50 + offset) + '%';
+        p.style.transform = 'translateX(0)';
+      }
+    });
+  }
+
+  document.getElementById('prev').addEventListener('click', ()=>{
+    if(idx>0) idx--;
+    showIndex(idx);
+  });
+  document.getElementById('next').addEventListener('click', ()=>{
+    const maxSpread = Math.floor((pages.length-1)/2);
+    if(idx < maxSpread) idx++;
+    showIndex(idx);
+  });
+
+  // initialize positions
+  // arrange pages side-by-side spreads: left at x%, right at x%+50
+  pages.forEach((p,n)=>{
+    const spread = Math.floor(n/2);
+    if(n%2===0) p.style.left = (spread*100) + '%';
+    else p.style.left = (50 + spread*100) + '%';
+  });
+  showIndex(0);
+</script>
+
+</body>
+</html>
